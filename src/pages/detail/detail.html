@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detail Information</ion-title>
+    <ion-buttons end>{{username}}</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->
+  <ion-card>
+    <div width="200" height="200" text-center>
+      <ion-slides pager>
+        <ion-slide *ngFor="let slide of slides">
+          <img [src]="slide.image">
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </ion-card>
+  <div text-center>
+    <ion-input class="productLabel"> 8 Quart</ion-input>   
+    <ion-row no-padding>
+      <ion-col col-8>
+        <button ion-button center (click)="buyProduct()">Buy Me</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button color="light" icon-right (click)="likeNum()">
+          <ion-icon name="heart"></ion-icon>
+          <ion-badge item-end>260k</ion-badge>
+        </button>
+      </ion-col>
+    </ion-row>      
+  </div>
+</ion-content>

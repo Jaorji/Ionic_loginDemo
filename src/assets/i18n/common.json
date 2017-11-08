@@ -1,0 +1,9 @@
+{
+  "placeholder":{
+    "username":"Username",
+    "password":"Password"
+  },
+  "login":{
+    "incorrect_username":"Wrong user name!"
+  }
+}

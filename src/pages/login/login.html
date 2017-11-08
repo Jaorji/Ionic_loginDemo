@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="loginForm" text-center>
+    <div text-center>
+      <ion-img class="clogo" width="160" height="40" src="assets/imgs/Clogo.png" ></ion-img>
+    </div>
+    <form [formGroup]="todo" >
+      <ion-item >
+        <ion-input type="text" formControlName="username" placeholder="Username" clearInput translate>{{username}}</ion-input>
+        <ion-icon name="people" item-inner></ion-icon>
+      </ion-item>
+      <button ion-item no-lines detail-none (click)="forgetUserNameEvent()">
+        <ion-label color="primary">Forget User Name</ion-label>
+      </button>
+      <ion-item >
+        <ion-input type="password" formControlName="password" placeholder="Password" clearInput translate>{{password}}</ion-input>
+        <ion-icon name="key" item-inner></ion-icon>
+      </ion-item>
+      <button  ion-item no-lines detail-none (click)="forgetPasswordEvent()">
+        <ion-label color="primary">Forget Password</ion-label>
+      </button>
+      <ion-item no-lines>
+        <ion-checkbox formControlName="login_checkBox" (ionChange)="updatgeCheckBox()" color="secondary"></ion-checkbox>
+        <ion-label >Remeber me</ion-label>
+      </ion-item>
+      <button ion-button type="submit" (click)="loginForm()" block [disabled]="!todo.valid" translate class="submit">SIGN IN</button>
+        <div>&</div>
+      <button ion-button (click)="signupForm()" block class="signup">SIGN UP</button>  
+    </form>
+  </div>
+</ion-content>
