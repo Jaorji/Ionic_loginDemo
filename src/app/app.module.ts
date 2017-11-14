@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -14,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { UserData } from '../providers/user-data';
+import { Server } from '../providers/server';
 
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
 
@@ -31,6 +32,7 @@ export function createTranslateLoader(http: Http) {
     DetailPage
   ],
   imports: [
+    BrowserModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
@@ -53,6 +55,7 @@ export function createTranslateLoader(http: Http) {
     StatusBar,
     SplashScreen,
     UserData,
+    Server,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

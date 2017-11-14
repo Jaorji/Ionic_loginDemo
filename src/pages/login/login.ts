@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 import { Validators , FormBuilder , FormGroup } from '@angular/forms';
 import { NavController , AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
@@ -6,6 +7,7 @@ import { ForgetUserName } from '../forget_username/forget_username';
 import { ForgetPassword } from '../forget_password/forget_password';
 import { TranslateService } from 'ng2-translate';
 import { UserData } from '../../providers/user-data';
+import { Server } from '../../providers/server';
 
 @Component({
   selector: 'page-login',
@@ -20,6 +22,8 @@ export class LoginPage {
     private alertCtrl : AlertController,
     public translate:TranslateService,
     public userData:UserData,
+    public http:Http,
+    public server:Server
   ){
     translate.setDefaultLang('common');
     translate.use('common');
@@ -31,35 +35,26 @@ export class LoginPage {
   }
 
   loginForm(){
-
+    let data:any;
     let username = this.todo.controls['username'];
     let password = this.todo.controls['password'];
+    
+    this.http.post("http://127.0.0.1:8182",username.value+","+password.value)
+      .subscribe(res =>{
+        data = res["_body"];
+        if(data==="login success"){
+          this.userData.login(username.value,password.value);
+          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.popToRoot();
+        }else{
+           let alert = this.alertCtrl.create({
+           title:'Wrong user name or Password!',
+           buttons:['OK']
+      });
+        alert.present();
+        }
+      });
 
-    if(username.value === "instantpot"&&password.value==="12345"){
-      this.userData.login(username.value,password.value);
-      this.navCtrl.setRoot(HomePage);
-      this.navCtrl.popToRoot();
-    }else if(username.value === "instantpot"&&password.value!="12345"){
-        let alert = this.alertCtrl.create({
-         title:'Wrong Password!',
-         subTitle:'The password should contain 5-20 characters',
-         buttons:['OK']
-      });
-        alert.present();
-    }else if(username.value != "instantpot"&&password.value==="12345"){
-      let alert = this.alertCtrl.create({
-         title:'Wrong user name!',
-         subTitle:'The user name should contain 5-20 characters',
-         buttons:['OK']
-      });
-        alert.present();
-    }else{
-      let alert = this.alertCtrl.create({
-         title:'Wrong user name and Password!',
-         buttons:['OK']
-      });
-        alert.present();
-    }
       //store cache username and password in web
       let login_checkBox = this.todo.controls['login_checkBox'];
   }

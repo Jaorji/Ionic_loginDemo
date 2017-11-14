@@ -3,6 +3,7 @@ import { NavController , NavParams , AlertController} from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 
 import { UserData } from '../../providers/user-data';
+import { Server } from '../../providers/server';
 
 @Component({
   selector: 'page-home',
@@ -15,8 +16,13 @@ export class HomePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private alertCtrl: AlertController,
-    public userData: UserData
-  ) {}
+    public userData: UserData,
+    public server:Server
+  ) {
+     this.server = server;
+     this.server.getProduct();
+
+  }
 
   ngAfterViewInit() {
     this.getUsername();

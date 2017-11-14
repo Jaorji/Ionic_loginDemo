@@ -12,36 +12,17 @@
 
 <ion-content padding>
   <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->
-  <ion-card>
+  <ion-card *ngFor="let item of server.data">
     <div text-center>
-      <ion-img width="160" height="160" src="assets/imgs/image1.png" (click)="imageClick()"></ion-img>
+      <ion-img width="160" height="160" src={{item.img}} (click)="imageClick()"></ion-img>
     </div>
     <ion-card-content>
       <div text-center>
         <ion-card-title>
-        Duo 7-in-1 (Series)
+        {{item.title}}
         </ion-card-title>
         <p>
-          Instant Pot(R) Duo Series is a 7-in-1 programmable cooker, built on our best selling Lux series.
-          The Duo Series combines the functions of as pressure cooker, slow cooker, rice/porridge maker, steamer, sauté/browning, yogurt maker and warmer
-        </p>
-        <button ion-button (click)="imageClick()">More Info</button>
-      </div>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <div text-center>
-      <ion-img width="160" height="160" src="assets/imgs/image2.png" (click)="imageClick()"></ion-img>
-    </div>
-    <ion-card-content>
-      <div text-center>
-        <ion-card-title>
-        Duo Plus 9-in-1
-        </ion-card-title>
-        <p>
-          Instant Pot® Duo Plus 9-in-1 Multi-Cooker is the next evolution in the Duo Series, 
-          the number 1 selling product in the Instant Pot® Family. The Duo Plus kitchen appliance combines the functions of a Pressure Cooker,
-          Slow Cooker, Rice/Porridge Cooker, Cake Maker, Yogurt Maker, Sauté/Searing, Steamer, Warmer and Sterilizer.
+          {{item.description}}
         </p>
         <button ion-button (click)="imageClick()">More Info</button>
       </div>
